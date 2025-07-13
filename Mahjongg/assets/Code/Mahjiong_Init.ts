@@ -1,4 +1,6 @@
 import { _decorator, Component, instantiate, Node, NodePool, Prefab, RigidBody, Vec3 } from 'cc';
+import { Mahjiong_Prefab } from './Mahjiong_Prefab';
+import { Mahjiong_Click } from './Mahjiong_Click';
 const { ccclass, property } = _decorator;
 
 @ccclass('Mahjiong_Init')
@@ -47,7 +49,7 @@ export class Mahjiong_Init extends Component {
     Mahjiong_Init() { //初始化函数
         let Mahjiong_Num = 90//生成麻将总数量
         let Mahjiong_Group = 30//生成麻将的组数
-        let Mahjiong_Class = 43//生成麻将的类型数量(10代表1-10随机)
+        let Mahjiong_Class = 42//生成麻将的类型数量(10代表1-10随机)
         this.Mahjiong_NodePool_Init(Mahjiong_Num)//节点池初始化
         this.Mahjiong_Ran(Mahjiong_Group, Mahjiong_Class)//取随机麻将编号到列表
         this.Mahjiong_Send(this.Mahjiong_List)//初始化麻将发牌
@@ -74,16 +76,21 @@ export class Mahjiong_Init extends Component {
         let Rad = 0//发牌弧度初始值
         let H = 0//发牌高度初始值
         let R = 0.5//发牌半径初始值
-        let step = 0//发牌角度初始值
+        let step = 20//发牌角度初始值
+        for (let i = List.length - 1; i > 0; i--) {//洗牌算法，游戏中的经典算法
+            let j = Math.floor(Math.random() * (i + 1));//随机一个数
+            [List[i], List[j]] = [List[j], List[i]];//交换位置
+        }
         const Send = () => {
             const Num = List.pop()//取出1个随机编号，并从列表删除
             if (!Num) {//如果随机列表空了，就停止
                 this.unschedule(Send)//停止调度
+                this.node.getComponent(Mahjiong_Click).on()//发牌完毕，开启触摸监听
                 return
             }
             const node: Node = this.Mahjiong_NodePool.get()//取出一个节点
             node.setParent(this.node)//设置节点的父节点
-            node.getChildByName(String(Num)).active = true;//显示对应节点
+            node.getComponent(Mahjiong_Prefab).Ran_Node(Num)//显示对应节点
             let x = Math.cos(Rad) * R//计算x轴坐标
             let z = Math.sin(Rad) * R//计算z轴坐标
             let y = 1 + H++ / 100//计算Y坐标，值越小高度越高
