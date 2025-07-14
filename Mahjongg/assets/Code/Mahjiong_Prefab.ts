@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, Layers, Node } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Mahjiong_Prefab')
@@ -14,6 +14,13 @@ export class Mahjiong_Prefab extends Component {
         this.node.getChildByName(this.Num).active = true//显示对应麻将
     }
 
+
+    UI_2D() {//修改节点所属从为2D --- 3D物件转2D
+        this.node.getChildByName(this.Num).layer = Layers.Enum.UI_2D
+    }
+    UI_3D() {//修改节点所属从为3D --- 2D物件转3D
+        this.node.getChildByName(this.Num).layer = Layers.Enum.UI_3D
+    }
     update(deltaTime: number) {
 
     }

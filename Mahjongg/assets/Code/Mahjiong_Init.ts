@@ -7,33 +7,37 @@ const { ccclass, property } = _decorator;
 export class Mahjiong_Init extends Component {
     //麻将初始化脚本
 
-    //节点池：NodePool，适用于频繁创建/销毁的节点，如子弹
-    //用于管理节点的缓存池
-    //避免反复创建，销毁节点，节约游戏性能
-    //创建节点池：节点池 = new NodePool();
-    //从节点池获取节点：节点池.get();
-    //将节点放回节点池：节点池.put(节点);
-    //节点池销毁：节点池.clear();
-    //节点池大小：节点池.size();
-    //节点池是否为空：节点池.hasFree();
-    //节点池是否为满：节点池.hasAny();
-    //节点池最大容量：节点池.maxSize;
-    //节点池最小容量：节点池.minSize;
-    //节点池自动增长：节点池.autoReleaseCount;
-    //节点池初始化：节点池.init(节点);
-    //节点池预加载：节点池.preload(节点);
-    //节点池预加载多个：节点池.preloadMultiple(节点,数量);
-    //节点池回收所有节点并销毁：节点池.destroy();
-    //节点池回收所有节点并销毁所有组件：节点池.destroyAll();
-    //节点池回收所有节点并销毁所有组件并重置节点：节点池.destroyAll(true);
-    //节点池回收所有节点并销毁所有组件并重置节点并重置位置：节点池.destroyAll(true,true);
+    /* 
+    节点池：NodePool，适用于频繁创建/销毁的节点，如子弹
+    用于管理节点的缓存池
+    避免反复创建，销毁节点，节约游戏性能
+    创建节点池：节点池 = new NodePool();
+    从节点池获取节点：节点池.get();
+    将节点放回节点池：节点池.put(节点);
+    节点池销毁：节点池.clear();
+    节点池大小：节点池.size();
+    节点池是否为空：节点池.hasFree();
+    节点池是否为满：节点池.hasAny();
+    节点池最大容量：节点池.maxSize;
+    节点池最小容量：节点池.minSize;
+    节点池自动增长：节点池.autoReleaseCount;
+    节点池初始化：节点池.init(节点);
+    节点池预加载：节点池.preload(节点);
+    节点池预加载多个：节点池.preloadMultiple(节点,数量);
+    节点池回收所有节点并销毁：节点池.destroy();
+    节点池回收所有节点并销毁所有组件：节点池.destroyAll();
+    节点池回收所有节点并销毁所有组件并重置节点：节点池.destroyAll(true);
+    节点池回收所有节点并销毁所有组件并重置节点并重置位置：节点池.destroyAll(true,true);
+    */
 
-    //定时器调度功能(循环执行某个函数)：this.schedule(函数，间隔时间)
-    //停止调度(停止循环)：this.unschedule(函数);
-    //定时器调度功能(只执行一次)：this.scheduleOnce(函数，间隔时间);
-    //定时器调度功能(延迟执行)：this.scheduleOnce(函数，间隔时间，延迟时间);
-    //定时器调度功能(循环执行某个函数，延迟执行)：this.schedule(函数，间隔时间，延迟时间);
-    //定时器调度功能(循环执行某个函数，延迟执行，重复次数)：this.schedule(函数，间隔时间，延迟时间，重复次数);
+    /* 
+    定时器调度功能(循环执行某个函数)：this.schedule(函数，间隔时间)
+    停止调度(停止循环)：this.unschedule(函数);
+    定时器调度功能(只执行一次)：this.scheduleOnce(函数，间隔时间);
+    定时器调度功能(延迟执行)：this.scheduleOnce(函数，间隔时间，延迟时间);
+    定时器调度功能(循环执行某个函数，延迟执行)：this.schedule(函数，间隔时间，延迟时间);
+    定时器调度功能(循环执行某个函数，延迟执行，重复次数)：this.schedule(函数，间隔时间，延迟时间，重复次数);
+    */
 
     @property(Prefab)
     Mahjiong_Prefab: Prefab = null;//导入麻将预制体
