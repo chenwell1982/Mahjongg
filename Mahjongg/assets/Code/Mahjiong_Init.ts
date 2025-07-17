@@ -44,7 +44,7 @@ export class Mahjiong_Init extends Component {
 
     Mahjiong_NodePool: NodePool = null;//节点池对象
 
-    Mahjiong_List: number[] = []//麻将列表
+    Mahjiong_List = []//麻将列表
 
     start() {
         this.Mahjiong_Init();//执行初始化
@@ -92,7 +92,7 @@ export class Mahjiong_Init extends Component {
                 this.node.getComponent(Mahjiong_Click).on()//发牌完毕，开启触摸监听
                 return
             }
-            const node: Node = this.Mahjiong_NodePool.get()//取出一个节点
+            let node = this.Mahjiong_NodePool.get()//取出一个节点
             node.setParent(this.node)//设置节点的父节点
             node.getComponent(Mahjiong_Prefab).Ran_Node(Num)//显示对应节点
             let x = Math.cos(Rad) * R//计算x轴坐标
@@ -100,8 +100,8 @@ export class Mahjiong_Init extends Component {
             let y = 1 + H++ / 100//计算Y坐标，值越小高度越高
             node.setPosition(x, y, z);//设置节点的位置
             let boby = node.getComponent(RigidBody)//获取刚体组件
-            boby.setLinearVelocity(new Vec3(x * Speed, y, z * Speed));//设置刚体的线速度
-            Rad += (Speed * Math.PI / 180)//增加弧度
+            boby.setLinearVelocity(new Vec3(x * Speed, 0, z * Speed));//设置刚体的线速度
+            Rad += (Speed * Math.PI) / 180//增加弧度
         }
         this.schedule(Send, 0.01)
     }

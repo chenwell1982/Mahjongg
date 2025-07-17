@@ -51,8 +51,8 @@ export class Mahjiong_Click extends Component {
     off() {//关闭触摸结束监听
         input.off(Input.EventType.TOUCH_END, this.TOUCH_END, this);
     }
-    TOUCH_END(event: EventTouch) {//触摸结束回调函数
-        this.Camera.screenPointToRay(event.getLocationX(), event.getLocationY(), this.Ray)//发射射线
+    TOUCH_END(e: EventTouch) {//触摸结束回调函数
+        this.Camera.screenPointToRay(e.getLocationX(), e.getLocationY(), this.Ray)//发射射线
         if (PhysicsSystem.instance.raycastClosest(this.Ray)) {//检测射线是否击中了碰撞体
             const node: Node = PhysicsSystem.instance.raycastClosestResult.collider.node//获取碰撞体节点
             if (node.name == "Mahjiong") {//判断节点名称是否为麻将节点
