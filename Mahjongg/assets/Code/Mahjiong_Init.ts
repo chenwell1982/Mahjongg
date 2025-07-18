@@ -1,6 +1,7 @@
 import { _decorator, Component, instantiate, Node, NodePool, Prefab, RigidBody, Vec3 } from 'cc';
 import { Mahjiong_Prefab } from './Mahjiong_Prefab';
 import { Mahjiong_Click } from './Mahjiong_Click';
+import { Get_Data } from './Get_Data';
 const { ccclass, property } = _decorator;
 
 @ccclass('Mahjiong_Init')
@@ -51,9 +52,9 @@ export class Mahjiong_Init extends Component {
     }
 
     Mahjiong_Init() { //初始化函数
-        let Mahjiong_Num = 90//生成麻将总数量
-        let Mahjiong_Group = 30//生成麻将的组数
-        let Mahjiong_Class = 42//生成麻将的类型数量(10代表1-10随机)
+        let Mahjiong_Num = this.node.getComponent(Get_Data).Number//接收生成麻将总数量
+        let Mahjiong_Group = this.node.getComponent(Get_Data).Group//接收生成麻将的组数
+        let Mahjiong_Class = this.node.getComponent(Get_Data).Class//接收生成麻将的类型数量(10代表1-10随机)
         this.Mahjiong_NodePool_Init(Mahjiong_Num)//节点池初始化
         this.Mahjiong_Ran(Mahjiong_Group, Mahjiong_Class)//取随机麻将编号到列表
         this.Mahjiong_Send(this.Mahjiong_List)//初始化麻将发牌
