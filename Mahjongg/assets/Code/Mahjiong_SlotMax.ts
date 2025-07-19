@@ -1,6 +1,7 @@
 import { _decorator, Component, director, Node } from 'cc';
 import { Mahjiong_Click } from './Mahjiong_Click';
 import { Mahjiong_Slot } from './Mahjiong_Slot';
+import { Clear } from './Clear';
 const { ccclass, property } = _decorator;
 
 @ccclass('Mahjiong_SlotMax')
@@ -43,10 +44,15 @@ export class Mahjiong_SlotMax extends Component {
             this.Max_Num = 8//增加卡槽上限
         }
     }
-    Restart(){//重新开始游戏函数
+    Restart() {//重新开始游戏函数
         director.loadScene("Main")//重新加载场景
     }
 
+    clear() {//清空继续执行函数
+        this.Slot_Max_UI_Node.active = false//隐藏游戏失败UI节点
+        this.node.getComponent(Clear).Clear_Ad()//调用清空脚本
+        this.node.getComponent(Mahjiong_Click).on()//重新开启监听
+    }
     update(deltaTime: number) {
 
     }

@@ -40,6 +40,8 @@ export class Mahjiong_Init extends Component {
     定时器调度功能(循环执行某个函数，延迟执行)：this.schedule(函数，间隔时间，延迟时间);
     定时器调度功能(循环执行某个函数，延迟执行，重复次数)：this.schedule(函数，间隔时间，延迟时间，重复次数);
     */
+    @property(Node)
+    ZDBG: Node = null//遮挡背景导入
 
     @property(Prefab)
     Mahjiong_Prefab: Prefab = null;//导入麻将预制体
@@ -93,6 +95,7 @@ export class Mahjiong_Init extends Component {
             if (!Num) {//如果随机列表空了，就停止
                 this.unschedule(Send)//停止调度
                 this.node.getComponent(Mahjiong_Click).on()//发牌完毕，开启触摸监听
+                this.ZDBG.active = false//隐藏遮挡背景
                 return
             }
             let node = this.Mahjiong_NodePool.get()//取出一个节点
