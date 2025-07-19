@@ -3,6 +3,7 @@ import { Mahjiong_Prefab } from './Mahjiong_Prefab';
 import { Mahjiong_Init } from './Mahjiong_Init';
 import { Mahjiong_Click } from './Mahjiong_Click';
 import { Mahjiong_SlotMax } from './Mahjiong_SlotMax';
+import { MainUI } from './MainUI';
 const { ccclass, property } = _decorator;
 
 @ccclass('Mahjiong_Slot')
@@ -40,7 +41,7 @@ export class Mahjiong_Slot extends Component {
         } else if (x == 3) {//如果是三消
             this.Clear_Boom()//播放消除动画
             this.Run_Order()//重新排列
-            this.node.getComponent(Mahjiong_Click).on()//开启监听
+            this.node.getComponent(MainUI).Up_Number()//更新剩余麻将
         }
     }
     /* 

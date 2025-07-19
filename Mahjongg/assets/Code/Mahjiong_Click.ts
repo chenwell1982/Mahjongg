@@ -1,6 +1,7 @@
-import { _decorator, BoxCollider, Camera, Component, EventTouch, geometry, Input, input, Node, PhysicsSystem, RigidBody, Vec3 } from 'cc';
+import { _decorator, BoxCollider, Camera, Component, EventTouch, geometry, Input, input, Node, PhysicsSystem, RigidBody, UI, Vec3 } from 'cc';
 import { Mahjiong_Prefab } from './Mahjiong_Prefab';
 import { Mahjiong_Slot } from './Mahjiong_Slot';
+import { MainUI } from './MainUI';
 const { ccclass, property } = _decorator;
 
 @ccclass('Mahjiong_Click')
@@ -47,9 +48,11 @@ export class Mahjiong_Click extends Component {
     }
     on() {//开启触摸结束监听
         input.on(Input.EventType.TOUCH_END, this.TOUCH_END, this);
+        this.node.getComponent(MainUI).Time_SW = true//开启时间定时调度
     }
     off() {//关闭触摸结束监听
         input.off(Input.EventType.TOUCH_END, this.TOUCH_END, this);
+        this.node.getComponent(MainUI).Time_SW = false//关闭时间定时调度
     }
     TOUCH_END(e: EventTouch) {//触摸结束回调函数
         this.Camera.screenPointToRay(e.getLocationX(), e.getLocationY(), this.Ray)//发射射线
